@@ -1,0 +1,26 @@
+{
+  "name": "inter-mediator-plugin-popupselector",
+  "version": "1.0.0",
+  "description": "INTER-Mediator plug-in to use the popup selector.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/INTER-Mediator/inter-mediator-plugin-popupselector.git"
+  },
+  "keywords": [
+    "INTER-Mediator",
+    "popup",
+    "selector"
+  ],
+  "dependencies": {
+  },
+  "author": "Masayuki Nii",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/INTER-Mediator/inter-mediator-plugin-popupselector/issues"
+  },
+  "homepage": "https://github.com/INTER-Mediator/inter-mediator-plugin-popupselector#readme"
+}
