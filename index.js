@@ -163,6 +163,3 @@ IMParts_Catalog.popupselector = {
         }
     }
 }
-
-// @@IM@@IgnoringRestOfFile
-module.exports = IMParts_Catalog
