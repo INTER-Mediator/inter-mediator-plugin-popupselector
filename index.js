@@ -10,14 +10,17 @@
 IMParts_Catalog.popupselector = {
     instanciate: function (parentNode) {
         'use strict'
-        var widgetId, node, inNode, valueNode
+        var node, inNode, valueNode
         if (parentNode.getAttribute('class') !== '_im_widget_popup') {
             parentNode.setAttribute('class', '_im_widget_popup')
             parentNode.style.zIndex = (IMParts_Catalog.popupselector.zIndex--)
             node = document.createElement('SPAN')
             node.setAttribute('data-im-control', 'enclosure')
             node.setAttribute('class', '_im_widget_popup_panel')
+            var newId = parentNode.getAttribute('id') + '-popupsel'
+            node.setAttribute('id', newId)
             parentNode.appendChild(node)
+            IMParts_Catalog.popupselector.ids.push(newId)
             IMParts_Catalog.popupselector.selectionRoots.push(node)
             inNode = document.createElement('SPAN')
             inNode.setAttribute('data-im-control', 'repeater')
@@ -32,9 +35,6 @@ IMParts_Catalog.popupselector = {
                     IMParts_Catalog.popupselector.clearSelection()
                 }
             })())
-            widgetId = parentNode.getAttribute('id')
-            IMParts_Catalog.popupselector.ids.push(widgetId)
-
             valueNode = document.createElement('span')
             valueNode.setAttribute('class', '_im_widget_popup_value')
             INTERMediatorLib.addEvent(valueNode, 'click', (function () {
@@ -47,14 +47,14 @@ IMParts_Catalog.popupselector = {
             parentNode.appendChild(valueNode)
 
             parentNode._im_getComponentId = (function () {
-                var theId = widgetId
+                var theId = newId
                 return function () {
                     return theId
                 }
             })()
 
             parentNode._im_setValue = (function () {
-                var theId = widgetId
+                var theId = newId
                 return function (str) {
                     IMParts_Catalog.popupselector.initialValues[theId] = str
                 }
@@ -98,7 +98,7 @@ IMParts_Catalog.popupselector = {
                     }
                 }
                 if (targetNode) {
-                    innodes = targetNode.getElementsByClassName('_im_widget_popup_value')
+                    innodes = targetNode.parentNode.getElementsByClassName('_im_widget_popup_value')
                     for (k = 0; k < innodes.length; k++) {
                         innodes[k].innerHTML = displayValue ? displayValue : '[Not selected]'
                     }
@@ -145,7 +145,7 @@ IMParts_Catalog.popupselector = {
         selectedData = node.getAttribute('data-im-value')
         target = node.parentNode.parentNode.getAttribute('data-im').split(' ')[0].split('@')
         targetField = target[1]
-        bindingId = node.parentNode.parentNode.id
+        bindingId = node.parentNode.id
         contextInfo = IMLibContextPool.getContextInfoFromId(bindingId, target[2])
         keyRec = contextInfo.record.split('=')
         contextInfo.context.setDataWithKey(keyRec[1], targetField, selectedData)
