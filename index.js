@@ -8,7 +8,7 @@
  * https://github.com/INTER-Mediator/INTER-Mediator/blob/master/dist-docs/License.txt
  */
 IMParts_Catalog.popupselector = {
-    instanciate: function (parentNode) {
+    instantiate: function (parentNode) {
         'use strict'
         var node, inNode, valueNode
         if (parentNode.getAttribute('class') !== '_im_widget_popup') {
